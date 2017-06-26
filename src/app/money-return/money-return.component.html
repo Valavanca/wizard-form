@@ -1,0 +1,21 @@
+<h4 class="head text-center">{{title}}</h4>
+<form #personalForm="ngForm" class="editForm" validate>
+  <div class="row">
+    <md-input-container class="long-inputfield">
+      <input #summa="ngModel" mdInput name="summa"  [(ngModel)]="req.requestMoney" placeholder="Summa" required type="number" maxlength='4'>
+      <md-hint [hidden]="summa.valid || summa.pristine" [ngStyle]="{'color': 'red'}" align="start"> {{errorRequestMoney()}}</md-hint>
+    </md-input-container> 
+  <!-- <div class="alert alert-danger" [hidden]="summa.valid">Summa is required</div>-->
+  </div>
+ 
+  <div class="row">
+    <md-input-container class="long-inputfield">
+      <input  #period="ngModel" mdInput name="period" [(ngModel)]="req.period" placeholder="Period" required type="number" maxlength="4">
+      <md-hint align="end">{{period.value}} year</md-hint>
+    </md-input-container>
+  </div>
+
+  <button md-raised-button type="submit" color="primary" routerLink="/personal" [disabled]="!personalForm.form.valid" (click)="save(personalForm)">Next</button> 
+</form>
+
+

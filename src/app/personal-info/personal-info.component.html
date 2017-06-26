@@ -1,0 +1,35 @@
+<h4 class="head text-center">{{title}}</h4>
+<form #personalForm="ngForm" class="editForm" validate>
+
+  <div class="row">
+    <md-input-container class="long-inputfield">
+      <input #firstName="ngModel" mdInput name="firstName"  [(ngModel)]="person.firstName" placeholder="First name" required type="text" maxlength='32'>
+      <md-hint [hidden]="firstName.valid || firstName.pristine" [ngStyle]="{'color': 'red'}" align="start"> Incorect first name</md-hint>
+    </md-input-container> 
+  </div>
+
+  <div class="row">
+    <md-input-container class="long-inputfield">
+      <input #lastName="ngModel" mdInput name="lastName"  [(ngModel)]="person.lastName" placeholder="Last name" required type="text" maxlength='32'>
+      <md-hint [hidden]="lastName.valid || lastName.pristine" [ngStyle]="{'color': 'red'}" align="start"> Incorect last name</md-hint>
+    </md-input-container> 
+  </div>
+
+  <div class="row">
+    <md-input-container class="long-inputfield">
+      <input #id="ngModel" mdInput name="id"  [(ngModel)]="person.id" placeholder="ID" required type="number" maxlength='21'>
+      <md-hint [hidden]="id.valid || id.pristine" [ngStyle]="{'color': 'red'}" align="start"> Incorect ID</md-hint>
+      <md-hint align="end">{{id}} / 21</md-hint>
+    </md-input-container> 
+  </div>
+
+  <div class="row">
+    <md-input-container class="long-inputfield">
+      <input #city="ngModel" mdInput name="lastName"  [(ngModel)]="person.city" placeholder="City" required type="text" maxlength='32'>
+      <md-hint [hidden]="city.valid || city.pristine" [ngStyle]="{'color': 'red'}" align="start"> Incorect city</md-hint>
+    </md-input-container> 
+  </div>
+
+  <button md-raised-button type="submit" color="primary" routerLink="/request">Previous</button> 
+  <button md-raised-button type="submit" color="primary" routerLink="/confirm" [disabled]="!personalForm.form.valid" (click)="save(personalForm)">Next</button> 
+</form>
