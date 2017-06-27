@@ -13,7 +13,7 @@ export class MoneyReturnComponent implements OnInit {
     form: any;
 
     errorRequestMoney() {
-      if (this.req.requestMoney > 50000  ) {
+      if (this.req.requestMoney > 10000  ) {
         return 'Please enter a smaller amount';
       } else {
         return 'Invalid summa!';

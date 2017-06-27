@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }        from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 /* Material */
@@ -23,12 +23,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormDataService }    from './data/formData.service'
 import { WorkflowService }    from './workflow/workflow.service';
 
+/* Directive*/
+import { IdValidatorDirective }    from './personal-info/id-validation.directive';
+
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     MoneyReturnComponent,
     PersonalInfoComponent,
+    IdValidatorDirective,
     ConfirmComponent
   ],
   imports: [
@@ -36,6 +40,7 @@ import { WorkflowService }    from './workflow/workflow.service';
     FormsModule,
     MaterialModule,
     NoopAnimationsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [{ provide: FormDataService, useClass: FormDataService },

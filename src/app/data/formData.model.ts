@@ -19,7 +19,7 @@ export class FormData {
 export class Personal {
     firstName: string = '';
     lastName : string = '';
-    id : number;
+    id : number ;
     city: string = '';
 }
 
