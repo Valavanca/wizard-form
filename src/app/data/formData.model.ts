@@ -1,7 +1,7 @@
 export class FormData {
     firstName: string = '';
     lastName : string = '';
-    id : number;
+    id : string = "";
     city: string = '';
     requestMoney: number;
     period: number;
@@ -9,7 +9,7 @@ export class FormData {
     clear() {
         this.firstName = '';
         this.lastName = '';
-        this.id = null;
+        this.id = "";
         this.city = '';
         this.requestMoney = null;
         this.period = null;
@@ -19,7 +19,7 @@ export class FormData {
 export class Personal {
     firstName: string = '';
     lastName : string = '';
-    id : number ;
+    id : string = "";
     city: string = '';
 }
 

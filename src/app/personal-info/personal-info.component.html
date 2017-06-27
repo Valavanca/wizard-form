@@ -28,7 +28,7 @@
       <input    mdInput name="id"  
                     [(ngModel)]="person.id" 
                     placeholder="ID" 
-                    type="number" 
+                    type="text"  
                     [formControl]="idVl">
       <md-hint [hidden]="idVl.valid || idVl.untouched" [ngStyle]="{'color': 'red'}" align="start"> Incorect ID 
         <md-hint [hidden]="!idVl.hasError('21year')" [ngStyle]="{'color': 'red'}" align="start">. Only for 21+ y.o.</md-hint>

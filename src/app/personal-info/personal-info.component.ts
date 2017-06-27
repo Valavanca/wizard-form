@@ -7,7 +7,7 @@ import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms'
 function has21years( errorType: string) {
   return function(input: FormControl) {
       console.log("INPUT:", input.value)
-    if(input.value>999999999) { // validation only 10 numbers in ID
+    if(input.value.length===10) { // validation only 10 numbers in ID
         let days = Number((input.value).toString().substring(0, 5));
         let birthday = new Date(1990, 0, days) 
         let yearsOld = new Date().getFullYear() - birthday.getFullYear();
