@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpModule, JsonpModule } from '@angular/http';
 
 /* Material */
 import { MaterialModule } from '@angular/material';
@@ -20,11 +21,10 @@ import { ConfirmComponent } from './confirm/confirm.component';
 import { AppRoutingModule } from './app-routing.module';
 
 /* Shared Service */
-import { FormDataService }    from './data/formData.service'
-import { WorkflowService }    from './workflow/workflow.service';
+import { FormDataService }    from './data/formData.service';
+import { GetCityService }    from './data/get-city.service'
+import { WorkflowService }    from './workflow/workflow.service'; 
 
-/* Directive*/
-import { IdValidatorDirective }    from './personal-info/id-validation.directive';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,6 @@ import { IdValidatorDirective }    from './personal-info/id-validation.directive
     NavbarComponent,
     MoneyReturnComponent,
     PersonalInfoComponent,
-    IdValidatorDirective,
     ConfirmComponent
   ],
   imports: [
@@ -41,9 +40,12 @@ import { IdValidatorDirective }    from './personal-info/id-validation.directive
     MaterialModule,
     NoopAnimationsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule,
+    JsonpModule
   ],
   providers: [{ provide: FormDataService, useClass: FormDataService },
+                    { provide: GetCityService, useClass: GetCityService },
                     { provide: WorkflowService, useClass: WorkflowService }],
   bootstrap: [AppComponent]
 })

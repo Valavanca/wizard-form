@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {FormDataService} from '../data/formData.service'; 
+import {GetCityService} from '../data/get-city.service'; 
 import {Personal} from '../data/formData.model'; 
 
 import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+
+/* rxJS*/
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
+
 
 function has21years( errorType: string) {
   return function(input: FormControl) {
@@ -28,27 +35,33 @@ function has10numbers( errorType: string) {
   };
 }
 
+
 @Component({
   selector: 'app-personal-info',
   templateUrl: './personal-info.component.html',
-  styleUrls: ['./personal-info.component.css']
+  styleUrls: ['./personal-info.component.css'] 
 })
-export class PersonalInfoComponent implements OnInit {
+export class PersonalInfoComponent implements OnInit { 
     title = 'Insert your personal info';
     person: Personal;
     form: any;
 
-    /****/
+    /* City */
+    cityCtrl: FormControl;
+    filteredCity: any;
+    states = [];
+
+    /** Validators ID START**/
         firstName = new FormControl('', [
             Validators.required,
             Validators.minLength(2),
-            Validators.maxLength(32)
+            Validators.maxLength(16)
         ]);
 
         lastName = new FormControl('', [
             Validators.required,
             Validators.minLength(2),
-            Validators.maxLength(32)
+            Validators.maxLength(16)
         ]);
         
         idVl = new FormControl('', [
@@ -67,22 +80,29 @@ export class PersonalInfoComponent implements OnInit {
             idVl: this.idVl,
             city: this.city
         });
-    /****/
+    /** validators end**/
     
-    constructor(private formDataService: FormDataService, private builder: FormBuilder) {
+    constructor(private formDataService: FormDataService, private getCity: GetCityService, private builder: FormBuilder) {
+
+        this.cityCtrl = new FormControl(); // Ctr for city input
+        this.filteredCity = this.cityCtrl.valueChanges
+                                        .startWith(null)
+                                        .map((name) => {return this.filterStates(name)});
     }
- 
-   /* login () {
-        console.log(this.loginForm.value);
-        // Attempt Logging in...
-    }*/
-    /*******/
 
     ngOnInit() {
         this.person = this.formDataService.getPersonal();
         console.log('Personal feature loaded!');
     }
- 
+
+    private filterStates(val: string) {
+        if(!!val && val.length>3) {
+            this.getCity.getCities(val).subscribe( res => {this.states=res});
+        }
+        return val ? this.states.filter(s => s.toLowerCase().indexOf(val.toLowerCase()) === 0)
+                : this.states;
+    }
+
     save(form: any) {
         if (form.valid) 
             this.formDataService.setPersonal(this.person);

@@ -31,90 +31,28 @@
                     type="text"  
                     [formControl]="idVl">
       <md-hint [hidden]="idVl.valid || idVl.untouched" [ngStyle]="{'color': 'red'}" align="start"> Incorect ID 
-        <md-hint [hidden]="!idVl.hasError('21year')" [ngStyle]="{'color': 'red'}" align="start">. Only for 21+ y.o.</md-hint>
-        <md-hint [hidden]="!idVl.hasError('10num')" [ngStyle]="{'color': 'red'}" align="start">. Required 10 numbers</md-hint>
+        <md-hint [hidden]="!idVl.hasError('21year')" [ngStyle]="{'color': 'red'}" align="start">| Only for 21+ y.o.</md-hint>
+        <md-hint [hidden]="!idVl.hasError('10num')" [ngStyle]="{'color': 'red'}" align="start">| Required 10 numbers</md-hint>
       </md-hint>
-      
-      
-      <!--<md-hint [hidden]="!idVl.hasError('21year')" [ngStyle]="{'color': 'red'}" align="start"> Only for 21+</md-hint>-->
-      <md-hint align="end">  {{personalForm.value.id}} / 10</md-hint>
+      <md-hint align="end">  {{person.id}} / 10</md-hint>
     </md-input-container> 
   </div>
 
-  <div class="row">
-    <md-input-container class="long-inputfield">
-      <input    mdInput name="city"  
-                    [(ngModel)]="person.city" 
-                    placeholder="City" 
-                    required type="text" 
-                    [formControl]="city">
-      <md-hint [hidden]="city.valid || city.untouched" [ngStyle]="{'color': 'red'}" align="start"> Incorect city</md-hint>
-    </md-input-container> 
-  </div>
+<md-input-container>
+  <input  mdInput name="city"  
+              placeholder="City" 
+              type="text"
+              [(ngModel)]="person.city" 
+              [mdAutocomplete]="auto" 
+              [formControl]="cityCtrl">
+</md-input-container>
+<md-hint [hidden]="city.valid || city.untouched" [ngStyle]="{'color': 'red'}" align="start"> Incorect city</md-hint>
+<md-autocomplete #auto="mdAutocomplete">
+  <md-option *ngFor="let city of filteredCity | async" [value]="city">
+    {{ city }}
+  </md-option>
+</md-autocomplete>
 
   <button md-raised-button type="submit" color="primary" routerLink="/request">Previous</button> 
   <button md-raised-button type="submit" color="primary" routerLink="/confirm" [disabled]="!personalForm.valid" (click)="save(personalForm)">Next</button> 
 </form>
-
-<!-- ************************************************************-->
-<!--<form class="editForm" [formGroup]="personalForm" (click)="save(personalForm)">
-
-  <div>
-    <label for="firstName">first Name</label>
-    <input   [(ngModel)]="person.firstName" 
-                type="text"
-                name="firstName"
-                id="firstName"
-                [formControl]="firstName">
-    <div [hidden]="firstName.valid || firstName.untouched">
-      <div>
-        The following problems have been found with the username:
-      </div>
-    </div>
-  </div>
-
-  <div>
-    <label for="lastName">last Name</label>
-    <input [(ngModel)]="person.lastName" 
-                type="text"
-                name="lastName"
-                id="lastName"
-                [formControl]="lastName">
-    <div [hidden]="lastName.valid || lastName.untouched">
-      <div>
-        The following problems have been found with the username:
-      </div>
-    </div>
-  </div>
-
-
-  <div >
-    <label for="id"> ID </label>
-    <input [(ngModel)]="person.id" 
-                type="number"
-                name="name_id"
-                id="some_id"
-                [formControl]="idVl">
-    <div [hidden]="idVl.valid || idVl.untouched">
-      <div>
-        The following problems have been found with the id:
-      </div>
-    </div>
-  </div>
-
-    <div>
-    <label for="City">City</label>
-    <input [(ngModel)]="person.city" 
-              type="text"
-              name="city"
-              id="city"
-              [formControl]="city">
-    <div [hidden]="city.valid || city.untouched">
-      <div>
-        The following problems have been found with the username:
-      </div>
-    </div>
-  </div>
-  
-  <button type="submit" [disabled]="!personalForm.valid"> OK </button>
-</form>-->
