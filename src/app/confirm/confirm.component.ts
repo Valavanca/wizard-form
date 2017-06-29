@@ -18,6 +18,7 @@ export class ConfirmComponent  implements OnInit {
     ngOnInit() {
         this.formData = this.formDataService.getFormData();
         this.isFormValid = this.formDataService.isFormValid();
+        this.formDataService.setProgres(70);
         console.log('Result feature loaded!');
     }
 
@@ -25,5 +26,8 @@ export class ConfirmComponent  implements OnInit {
         alert('Excellent Job!');
         this.formData = this.formDataService.resetFormData();
         this.isFormValid = false;
+        this.formDataService.setProgres(100);
     }
+
+    
 }

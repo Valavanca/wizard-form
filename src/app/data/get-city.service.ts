@@ -14,7 +14,7 @@ export class GetCityService {
 
   getCities(prefix: string): Observable<string[]> {
     let params = new URLSearchParams();
-    params.set('q', prefix); // the user's search value
+    params.set('q', prefix);                                        // the user's search value
     params.set('callback', 'JSONP_CALLBACK');
     return this.jsonp.get(this.heroesUrl, { search: params })
                     .map(this.extractData)

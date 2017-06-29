@@ -13,7 +13,7 @@ import { Observable } from 'rxjs/Observable';
 
 function has21years( errorType: string) {
   return function(input: FormControl) {
-      console.log("INPUT:", input.value)
+      /*console.log("INPUT:", input.value)*/
     if(input.value.length===10) { // validation only 10 numbers in ID
         let days = Number((input.value).toString().substring(0, 5));
         let birthday = new Date(1990, 0, days) 
@@ -47,7 +47,6 @@ export class PersonalInfoComponent implements OnInit {
     form: any;
 
     /* City */
-    cityCtrl: FormControl;
     filteredCity: any;
     states = [];
 
@@ -70,43 +69,49 @@ export class PersonalInfoComponent implements OnInit {
             has10numbers("10num")
         ]);
         
-        city = new FormControl('', [
+        cityCtrl = new FormControl('', [
             Validators.required
-        ]);
+        ]); 
 
         personalForm: FormGroup = this.builder.group({
             firstName: this.firstName,
             lastName: this.lastName,
             idVl: this.idVl,
-            city: this.city
+            city: this.cityCtrl
         });
     /** validators end**/
     
     constructor(private formDataService: FormDataService, private getCity: GetCityService, private builder: FormBuilder) {
-
-        this.cityCtrl = new FormControl(); // Ctr for city input
         this.filteredCity = this.cityCtrl.valueChanges
                                         .startWith(null)
-                                        .map((name) => {return this.filterStates(name)});
+                                        .map((name)=>{ 
+                                            this.fetchData(name); 
+                                            return name
+                                        }).map((name) => { 
+                                            return this.filterStates(name)
+                                        });
     }
 
     ngOnInit() {
         this.person = this.formDataService.getPersonal();
+        this.formDataService.setProgres(40);
         console.log('Personal feature loaded!');
     }
 
     private filterStates(val: string) {
-        if(!!val && val.length>3) {
-            this.getCity.getCities(val).subscribe( res => {this.states=res});
-        }
         return val ? this.states.filter(s => s.toLowerCase().indexOf(val.toLowerCase()) === 0)
                 : this.states;
     }
+    private fetchData(val: string) {
+        if(!!val&&(val.length>=3)) {
+            this.getCity.getCities(val).subscribe( res => {this.states=res});
+            console.log("this.states", this.states);
+        }
+    }
 
     save(form: any) {
-        if (form.valid) 
+        if (form.valid)            
             this.formDataService.setPersonal(this.person);
-            console.log
     }
 
 }

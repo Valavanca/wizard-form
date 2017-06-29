@@ -1,33 +1,33 @@
-<h4 class="head">{{title}}</h4>
-<form #requestForm="ngForm" class="editForm" validate>
+<h4 class="head text-center">{{title}}</h4>
+<form  [formGroup]="moneyForm"  class="editForm">
 
   <div class="row">
     <md-input-container class="long-inputfield">
-      <input #summa="ngModel" 
-                    mdInput name="summa"  
+      <input    mdInput name="summa"  
                     [(ngModel)]="req.requestMoney" 
                     placeholder="Summa" 
-                    required type="number"
-                    min="1" 
-                    max="10000">
-      <md-hint [hidden]="summa.valid || summa.pristine" [ngStyle]="{'color': 'red'}" align="start"> {{errorRequestMoney()}}</md-hint>
+                    type="number" 
+                    [formControl]="summa">
+      <md-hint [hidden]="summa.valid || summa.untouched" [ngStyle]="{'color': 'red'}" align="start"> Incorect summa <br>
+        <md-hint [hidden]="!summa.hasError('max10k')" [ngStyle]="{'color': 'red'}" align="start">Require range [1-10 000].</md-hint>
+      </md-hint>
+    </md-input-container> 
+  </div>
+
+  <div class="row">
+    <md-input-container class="long-inputfield">
+      <input    mdInput name="period"  
+                    [(ngModel)]="req.period" 
+                    placeholder="Period" 
+                    type="number"  
+                    [formControl]="period">
+    <md-hint [hidden]="period.valid || period.untouched" [ngStyle]="{'color': 'red'}" align="start"> Incorect period. <br>
+      <md-hint [hidden]="!period.hasError('max12')" [ngStyle]="{'color': 'red'}" align="start">Require range [1- 12].</md-hint>
+    </md-hint>
+    <md-hint align="end">  {{req.period}} year(s)</md-hint>
     </md-input-container> 
   </div>
  
-  <div class="row">
-    <md-input-container class="long-inputfield">
-      <input  #period="ngModel" 
-                    mdInput name="period" 
-                    [(ngModel)]="req.period" 
-                    placeholder="Period" 
-                    required type="number" 
-                    min="1"
-                    max="12">
-      <md-hint align="end">{{period.value}} year</md-hint>
-    </md-input-container>
-  </div>
-
-  <button md-raised-button type="submit" color="primary" routerLink="/personal" [disabled]="!requestForm.form.valid" (click)="save(requestForm)">Next</button> 
+  <button md-raised-button type="submit" color="primary" routerLink="/personal" [disabled]="!moneyForm.valid" (click)="save(moneyForm)">Next</button> 
 </form>
-
 

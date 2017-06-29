@@ -1,4 +1,4 @@
-import { Injectable }                        from '@angular/core';
+import { Injectable, Output, EventEmitter}                        from '@angular/core';
 
 import { FormData, Personal, RequestMoney }       from './formData.model';
 import { WorkflowService }                   from '../workflow/workflow.service';
@@ -13,6 +13,16 @@ export class FormDataService {
 
     constructor(private workflowService: WorkflowService) { 
     }
+
+    /* NAV progres*/
+        @Output() fire: EventEmitter<any> = new EventEmitter();
+        setProgres(value) {
+            this.fire.emit(value);
+        }
+        getEmittedValue() {
+            return this.fire;
+        }
+    /* end nav progress*/
 
     getPersonal(): Personal {
         // Return the Personal data
@@ -58,6 +68,23 @@ export class FormDataService {
     getFormData(): FormData {
         // Return the entire Form Data
         return this.formData;
+    }
+    getDefaultData(): FormData {
+        this.workflowService.validateStep(STEPS.personal); 
+        this.workflowService.validateStep(STEPS.requestMoney); 
+
+        this.isRequestMoneyValid = true;
+        this.isPersonalFormValid = true;
+
+        this.formData.requestMoney = 4500;
+        this.formData.period = 10;
+
+        this.formData.firstName = "Nikon";
+        this.formData.lastName = "Tenchi";
+        this.formData.id = "0123456892";
+        this.formData.city = "Kiev, KC, Ukraine";
+        return this.formData;
+
     }
 
     resetFormData(): FormData {

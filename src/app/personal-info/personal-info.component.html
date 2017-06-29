@@ -34,7 +34,7 @@
         <md-hint [hidden]="!idVl.hasError('21year')" [ngStyle]="{'color': 'red'}" align="start">| Only for 21+ y.o.</md-hint>
         <md-hint [hidden]="!idVl.hasError('10num')" [ngStyle]="{'color': 'red'}" align="start">| Required 10 numbers</md-hint>
       </md-hint>
-      <md-hint align="end">  {{person.id}} / 10</md-hint>
+      <md-hint align="end">  {{(person?.id).toString().length}} / 10</md-hint>
     </md-input-container> 
   </div>
 
@@ -46,7 +46,7 @@
               [mdAutocomplete]="auto" 
               [formControl]="cityCtrl">
 </md-input-container>
-<md-hint [hidden]="city.valid || city.untouched" [ngStyle]="{'color': 'red'}" align="start"> Incorect city</md-hint>
+<md-hint [hidden]="cityCtrl.valid || cityCtrl.untouched" [ngStyle]="{'color': 'red'}" align="start"> Incorect city</md-hint>
 <md-autocomplete #auto="mdAutocomplete">
   <md-option *ngFor="let city of filteredCity | async" [value]="city">
     {{ city }}

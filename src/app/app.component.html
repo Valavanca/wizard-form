@@ -1,7 +1,14 @@
-<h1>{{title}}</h1>
+<md-card-title>{{title}}</md-card-title>
 <app-navbar></app-navbar>
 <md-card>
   <router-outlet></router-outlet> 
 </md-card>
 
+<md-slide-toggle (click)="reloadData()"
+    
+    class="example-margin"
+    [checked]="true">
+  Default data 
+</md-slide-toggle>
+ 
 <pre>{{ formData | json }}</pre>

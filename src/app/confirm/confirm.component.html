@@ -1,7 +1,7 @@
 <h4 class="head text-center">{{title}}</h4>
-<md-card>
-  <md-list>
 
+  <md-list>
+    <md-card>
     <md-list-item>
       <md-icon md-list-icon>&#xE7FD;</md-icon>
       <h3 md-line> Name:  </h3>
@@ -38,10 +38,11 @@
       <md-icon md-list-icon>&#xE924;</md-icon>
       <h3 md-line> Period:  </h3>
       <p md-line>
-        <span> {{formData.period}}</span>
+        <span> {{formData.period}} year(s)</span>
       </p>
     </md-list-item>
+    </md-card>
   </md-list>
-</md-card>
+
 
 <button md-raised-button type="submit" color="primary" routerLink="/request" (click)="submit()">Submit</button> 
