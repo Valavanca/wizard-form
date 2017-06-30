@@ -30,9 +30,9 @@
                     placeholder="ID" 
                     type="text"  
                     [formControl]="idVl">
-      <md-error  [hidden]="idVl.valid || idVl.untouched" [ngStyle]="{'color': 'red'}" align="start"> Incorect ID 
-        <md-hint  [hidden]="idVl.hasError('10num') || !idVl.hasError('21year')" [ngStyle]="{'color': 'red'}" align="start">. Only for 21+ y.o.</md-hint >
-        <md-hint  [hidden]="!idVl.hasError('10num')" [ngStyle]="{'color': 'red'}" align="start">. Required 10 num.</md-hint >
+      <md-error  [hidden]="idVl.valid || idVl.untouched" > Incorect ID 
+        <md-hint  [hidden]="idVl.hasError('10num') || !idVl.hasError('21year')" >. Only for 21+ y.o.</md-hint >
+        <md-hint  [hidden]="!idVl.hasError('10num')">. Required 10 num.</md-hint >
         <md-hint align="end" [hidden]="!idVl.hasError('10num')">  {{(person?.id).toString().length}}/10</md-hint>
       </md-error >
     </md-input-container> 
