@@ -12,6 +12,12 @@ This is multi step form generated with [Angular CLI](https://github.com/angular/
 - Data is stored when the "Next" button is pressed.
 - Confirmation of the component shows the saved data using the "Send" and "Reset" buttons. Display show popup data. Reset - reset data.
 
+## Demo
+- [Heroku](https://fast-reef-61200.herokuapp.com/personal)
+- [Github pages](https://valavanca.github.io/wizard-form/personal)
+
+p.s Since geobytes.com has usesed http, it is necessary to download scripts manually to run the application. It only helps to Heroku
+
 ### Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. 
