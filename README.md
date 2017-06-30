@@ -5,7 +5,7 @@ This is multi step form generated with [Angular CLI](https://github.com/angular/
 ## Project
 
 - The primary instance of the data form is represented by "FormDataService", which has all the necessary methods.
-- FormDataService checks the steps using "WorkflowService". The router uses `WorkflowService 'to validate paths.
+- FormDataService checks the steps using "WorkflowService". The router uses `WorkflowService` to validate paths.
 - the input fields are checked by configured `FormControl` and` FormGroup`
 - Each step component gets the type of personal data for its input fields with Data serviced.
 - City field autocompleted by [geobytes.com](http://geobytes.com/)
@@ -16,7 +16,7 @@ This is multi step form generated with [Angular CLI](https://github.com/angular/
 - [Heroku](https://fast-reef-61200.herokuapp.com/personal)
 - [Github pages](https://valavanca.github.io/wizard-form/personal)
 
-p.s Since geobytes.com has usesed http, it is necessary to download scripts manually to run the application. It only helps to Heroku
+p.s Since geobytes.com has used http, it is necessary to download scripts manually to run the application. It helps only for Heroku instance.
 
 ### Development server
 
@@ -28,5 +28,5 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ___
 
-#### Feel free to contact me or to make pull request
+#### Feel free to contact me or make pull request/
 
