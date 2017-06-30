@@ -15,7 +15,10 @@ This is multi step form generated with [Angular CLI](https://github.com/angular/
 ## Demo
 - [Heroku](https://fast-reef-61200.herokuapp.com/personal)
 - [Github pages](https://valavanca.github.io/wizard-form/personal)
+<<<<<<< HEAD
 
+=======
+>>>>>>> cbe058e743d0c00c740dcad961e7a1649338d561
 p.s Since geobytes.com has usesed http, it is necessary to download scripts manually to run the application. It only helps to Heroku
 
 ### Development server
