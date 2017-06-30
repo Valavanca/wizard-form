@@ -29,7 +29,9 @@ function has21years( errorType: string) {
 function has10numbers( errorType: string) {
   return function(input: FormControl) {
     let length = (input.value || 0).toString().length;
-    if(length!==10) { // need 10 numbers in ID
+    let isNum = /^\d+$/.test(input.value || '0');
+    console.log("isNum", isNum, " - ", input.value)
+    if((length!==10)||!isNum) { // need 10 numbers in ID
         return  { [errorType]: true };
     } 
   };
