@@ -1,6 +1,7 @@
-<md-card>
-  <md-card-content>
-    <section>
+<md-card class="header_card">
+  <md-card-title class="header">{{title}}</md-card-title>
+  <md-card-content class="nav">
+    <section class="progress">
       <!-- Progres bar -->
       <md-progress-bar
           class="example-margin"
@@ -8,8 +9,8 @@
           [value]="progres">
       </md-progress-bar>
     </section>
-    <button md-button routerLink="/request" routerLinkActive="primary" [class.focus]="progres>1">Period</button>
-    <button md-button routerLink="/personal" routerLinkActive="primary" [class.focus]="progres>40">Info</button>
-    <button md-button routerLink="/confirm" routerLinkActive="primary" [class.focus]="progres>70">Confirm</button>
+    <button md-button class="nav_button " routerLink="/request" routerLinkActive="bg-primary" [class.bg-accent]="progres>1">1. Period</button>
+    <button md-button class="nav_button midle" routerLink="/personal" routerLinkActive="bg-primary" [class.bg-accent]="progres>40">2. Info</button>
+    <button md-button class="nav_button " routerLink="/confirm" routerLinkActive="bg-primary" [class.bg-accent]="progres>70">3. Confirm</button>
   </md-card-content>
 </md-card>

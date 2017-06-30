@@ -2,12 +2,34 @@
 @import '~https://fonts.googleapis.com/icon?family=Material+Icons';
 @import '~https://fonts.googleapis.com/icon?family=Roboto';
 
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
 
 body {
   font-family: Roboto;
  }
 
- .primary {
-   background-color: red;
- }
+.primary-color {
+    color: #3F51B5!important;
+  }
+.accent-color {
+    color: #FF4081!important;
+  }
+.bg-primary {
+    background-color: #c2185b!important;
+  }
+.bg-accent {
+    background-color: #fbc02d!important;
+  }
+.white-text {
+    color: #FFF!important;
+}
+.mat-progress-bar-fill::after {
+    background-color: #c2185b!important;
+}
+.mat-progress-bar-buffer {
+    background-color: #263238!important;
+} 
+
+.input_form {
+    margin-bottom: 1em;
+}

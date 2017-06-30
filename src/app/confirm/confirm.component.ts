@@ -1,6 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import {FormDataService} from '../data/formData.service'; 
 import { FormData }  from '../data/formData.model';
+
+import {MdDialog} from '@angular/material';
+import {MD_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-confirm',
@@ -12,22 +15,34 @@ export class ConfirmComponent  implements OnInit {
     @Input() formData: FormData;
     isFormValid: boolean = false;
     
-    constructor(private formDataService: FormDataService) {
+    constructor(private formDataService: FormDataService, public dialog: MdDialog) {
+
     }
 
-    ngOnInit() {
+    openDialog() {
+        this.formDataService.setProgres(100);
+        this.dialog.open(PresentData, {
+            data:  this.formData
+        });
+    }
+    
+    ngOnInit() { 
         this.formData = this.formDataService.getFormData();
         this.isFormValid = this.formDataService.isFormValid();
         this.formDataService.setProgres(70);
         console.log('Result feature loaded!');
     }
-
     submit() {
-        alert('Excellent Job!');
         this.formData = this.formDataService.resetFormData();
         this.isFormValid = false;
-        this.formDataService.setProgres(100);
-    }
-
-    
+    }  
 }
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: './dialog.component.html'
+})
+export class PresentData {
+    constructor(@Inject(MD_DIALOG_DATA) public data: any) { }
+}
+

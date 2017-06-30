@@ -15,7 +15,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 /* Fields components*/
 import { MoneyReturnComponent } from './money-return/money-return.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
-import { ConfirmComponent } from './confirm/confirm.component';
+import { ConfirmComponent, PresentData } from './confirm/confirm.component';
 
 /* App Router */
 import { AppRoutingModule } from './app-routing.module';
@@ -32,7 +32,8 @@ import { WorkflowService }    from './workflow/workflow.service';
     NavbarComponent,
     MoneyReturnComponent,
     PersonalInfoComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    PresentData
   ],
   imports: [
     BrowserModule,
@@ -42,11 +43,12 @@ import { WorkflowService }    from './workflow/workflow.service';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpModule,
-    JsonpModule
+    JsonpModule,
   ],
   providers: [{ provide: FormDataService, useClass: FormDataService },
                     { provide: GetCityService, useClass: GetCityService },
                     { provide: WorkflowService, useClass: WorkflowService }],
+  entryComponents: [PresentData],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

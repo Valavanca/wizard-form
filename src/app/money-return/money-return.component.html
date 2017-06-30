@@ -2,32 +2,34 @@
 <form  [formGroup]="moneyForm"  class="editForm">
 
   <div class="row">
-    <md-input-container class="long-inputfield">
+    <md-input-container class="long-inputfield input_form">
       <input    mdInput name="summa"  
                     [(ngModel)]="req.requestMoney" 
                     placeholder="Summa" 
                     type="number" 
                     [formControl]="summa">
-      <md-hint [hidden]="summa.valid || summa.untouched" [ngStyle]="{'color': 'red'}" align="start"> Incorect summa <br>
-        <md-hint [hidden]="!summa.hasError('max10k')" [ngStyle]="{'color': 'red'}" align="start">Require range [1-10 000].</md-hint>
-      </md-hint>
+      <md-error>Incorect summa. 
+        <md-hint [hidden]="!summa.hasError('max10k')"> Require [1-10 000].</md-hint>
+      </md-error>
     </md-input-container> 
   </div>
 
   <div class="row">
-    <md-input-container class="long-inputfield">
+    <md-input-container class="long-inputfield input_form">
       <input    mdInput name="period"  
                     [(ngModel)]="req.period" 
                     placeholder="Period" 
                     type="number"  
                     [formControl]="period">
-    <md-hint [hidden]="period.valid || period.untouched" [ngStyle]="{'color': 'red'}" align="start"> Incorect period. <br>
-      <md-hint [hidden]="!period.hasError('max12')" [ngStyle]="{'color': 'red'}" align="start">Require range [1- 12].</md-hint>
-    </md-hint>
+    <md-error [hidden]="period.valid || period.untouched"> Incorect period. </md-error>
+    <md-error [hidden]="!period.hasError('max12')">Require [1- 12].</md-error>
     <md-hint align="end">  {{req.period}} year(s)</md-hint>
     </md-input-container> 
   </div>
- 
-  <button md-raised-button type="submit" color="primary" routerLink="/personal" [disabled]="!moneyForm.valid" (click)="save(moneyForm)">Next</button> 
+
+ <md-grid-tile-footer>
+    <button md-raised-button type="submit" color="primary" routerLink="/personal" [disabled]="!moneyForm.valid" (click)="save(moneyForm)">Next</button> 
+ </md-grid-tile-footer>
 </form>
+
 

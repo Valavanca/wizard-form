@@ -1,10 +1,9 @@
 <h4 class="head text-center">{{title}}</h4>
 
-  <md-list>
-    <md-card>
+  <md-list class="confirm_list">
     <md-list-item>
       <md-icon md-list-icon>&#xE7FD;</md-icon>
-      <h3 md-line> Name:  </h3>
+      <h3 class="field_title" md-line> Name:  </h3>
       <p md-line>
         <span> {{formData.firstName}}  {{formData.lastName}} </span>
       </p>
@@ -12,7 +11,7 @@
 
     <md-list-item>
       <md-icon md-list-icon>&#xE7F1;</md-icon>
-      <h3 md-line> City:  </h3>
+      <h3 class="field_title" md-line> City:  </h3>
       <p md-line>
         <span> {{formData.city}}</span>
       </p>
@@ -20,7 +19,7 @@
 
     <md-list-item>
       <md-icon md-list-icon>&#xE83A;</md-icon>
-      <h3 md-line> Identifical:  </h3>
+      <h3 class="field_title" md-line> Identifical:  </h3>
       <p md-line>
         <span> {{formData.id}}</span>
       </p>
@@ -28,7 +27,7 @@
 
     <md-list-item>
       <md-icon md-list-icon>&#xE263;</md-icon>
-      <h3 md-line> Request money:  </h3>
+      <h3 class="field_title" md-line > Request money:  </h3>
       <p md-line>
         <span> {{formData.requestMoney}} $</span>
       </p>
@@ -36,13 +35,14 @@
 
     <md-list-item>
       <md-icon md-list-icon>&#xE924;</md-icon>
-      <h3 md-line> Period:  </h3>
+      <h3 md-line class="field_title"> Period:  </h3>
       <p md-line>
         <span> {{formData.period}} year(s)</span>
       </p>
     </md-list-item>
-    </md-card>
   </md-list>
 
-
-<button md-raised-button type="submit" color="primary" routerLink="/request" (click)="submit()">Submit</button> 
+ <md-grid-tile-footer>
+  <button md-raised-button type="submit" color="primary" (click)="openDialog()">Submit</button> 
+  <button md-raised-button type="submit" routerLink="/request" (click)="submit()">Reset</button> 
+ </md-grid-tile-footer>

@@ -8,7 +8,6 @@ import { FormDataService }   from './data/formData.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-    title = 'Multi-Step Wizard';
     @Input() formData;
     defaultData: boolean = false;
 
@@ -17,7 +16,6 @@ export class AppComponent implements OnInit {
  
     ngOnInit() {
         this.formData = this.formDataService.getDefaultData();
-        console.log(this.title + ' loaded!');
     }
 
     reloadData() {

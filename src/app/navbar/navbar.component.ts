@@ -7,6 +7,7 @@ import {FormDataService} from '../data/formData.service'
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  title = 'Multi-Step form';
   progres:number;
   formService:FormDataService;
   subscription; //?
